@@ -1,1 +1,1 @@
-rootProject.name = "com.example.homework2"
+rootProject.name = "com.MyWeb.cs"
