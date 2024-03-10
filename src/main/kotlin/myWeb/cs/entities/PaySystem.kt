@@ -1,7 +1,7 @@
 package myWeb.cs.entities
 
 import entities.DataBaseAdapter
-import myWeb.cs.entities.Dto.Order
+import myWeb.cs.entities.OrderEnteties.Order
 import myWeb.cs.entities.Dto.User
 import java.util.*
 

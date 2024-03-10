@@ -1,7 +1,6 @@
-package myWeb.cs.entities.Dto
+package myWeb.cs.entities.OrderEnteties
 
-import myWeb.cs.entities.OrderEnteties.OrderState
-import myWeb.cs.entities.OrderEnteties.PreCookingState
+import myWeb.cs.entities.Dto.Meal
 
 class Order() {
     val mealsList: MutableList<Meal> = mutableListOf()

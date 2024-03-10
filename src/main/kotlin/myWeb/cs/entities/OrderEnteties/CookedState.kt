@@ -1,7 +1,6 @@
 package myWeb.cs.entities.OrderEnteties
 
 import myWeb.cs.entities.Dto.Meal
-import myWeb.cs.entities.Dto.Order
 
 class CookedState(private val order: Order): OrderState {
     override fun addMeal(meal: Meal) {

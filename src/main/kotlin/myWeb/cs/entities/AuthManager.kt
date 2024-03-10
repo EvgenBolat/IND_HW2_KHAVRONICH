@@ -37,6 +37,7 @@ object AuthManager {
         } catch (e: Exception) {
             throw Exception("Произошла ошибка")
         }
+        println(activeUsersListObj.activeUsers)
 
         if (activeUsersListObj.activeUsers.values.indexOf(user) == -1) {
             var userToken: ULong = 0u
