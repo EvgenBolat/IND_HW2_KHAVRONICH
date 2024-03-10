@@ -30,7 +30,7 @@ class CookingState(private val order: Order): OrderState {
         } while (currentCookingTime > 0)
         locker.withLock {
             isDone = true
-            order.orderState = CookedState(order)
+            order.orderState = AfterCookingState(order)
         }
     }
 

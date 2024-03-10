@@ -2,7 +2,7 @@ package myWeb.cs.entities.OrderEnteties
 
 import myWeb.cs.entities.Dto.Meal
 
-class PreCookingState(private val order: Order): OrderState {
+class BeforeCookingState(private val order: Order): OrderState {
 
     override fun addMeal(meal: Meal) {
         order.mealsList.add(meal)

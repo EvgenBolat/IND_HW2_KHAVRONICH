@@ -22,7 +22,11 @@ fun Application.orderMeal() {
             }
             try {
                 (user as Visitor).orderBuilder.addMeal(result.name)
-            } catch (e: Exception) {
+            }
+            catch (e: ArithmeticException){
+                call.respond(HttpStatusCode.BadRequest, "Данная позиция закончилась.")
+            }
+            catch (e: Exception) {
                 call.respond(HttpStatusCode.BadRequest, e.message.toString())
             }
             call.respond(HttpStatusCode.OK, "Добавлено блюдо: " + result.name)

@@ -5,7 +5,7 @@ import myWeb.cs.entities.Dto.Meal
 class Order() {
     val mealsList: MutableList<Meal> = mutableListOf()
 
-    var orderState: OrderState = PreCookingState(this)
+    var orderState: OrderState = BeforeCookingState(this)
 
     fun addMeal(meal: Meal): Unit{
         orderState.addMeal(meal)
@@ -16,14 +16,14 @@ class Order() {
     }
 
     fun cancel() {
-        if (orderState !is PreCookingState){
+        if (orderState !is BeforeCookingState){
             throw NoSuchMethodException("Невозможно отменить приготовленный заказ")
         }
         mealsList.clear()
     }
 
     fun removeMeal(meal: Meal) {
-        if (orderState is PreCookingState)
+        if (orderState is BeforeCookingState)
         {
             mealsList.remove(meal)
         }
