@@ -21,13 +21,11 @@ class CookingState(private val order: Order): OrderState {
     private fun cookingThread() {
         isCooking = true
         var currentCookingTime: Long = 0
-        do {
             locker.withLock {
                 currentCookingTime = cookingTime.toLong()
-                cookingTime = 0u
+                println(currentCookingTime)
+                Thread.sleep(currentCookingTime * 1000)
             }
-            Thread.sleep(currentCookingTime * 60)
-        } while (currentCookingTime > 0)
         locker.withLock {
             isDone = true
             order.orderState = AfterCookingState(order)

@@ -20,6 +20,7 @@ import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import myWeb.cs.features.addMealsToMenu.addMealToMenu
+import myWeb.cs.features.changeMealPrice.changeMealCookingTime
 import myWeb.cs.features.getIncome.getIncome
 import myWeb.cs.features.increaseMealAmount.increaseMealAmount
 import myWeb.cs.features.pay.pay
@@ -50,4 +51,5 @@ fun Application.module() {
     removeDishFromMenu()
     removeDishFromOrder()
     changeMealPrice()
+    changeMealCookingTime()
 }

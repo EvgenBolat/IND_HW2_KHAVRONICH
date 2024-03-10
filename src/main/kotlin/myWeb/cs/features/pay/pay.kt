@@ -9,6 +9,7 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import myWeb.cs.entities.OrderEnteties.PayedState
 
 fun Application.pay() {
     routing {
@@ -22,6 +23,12 @@ fun Application.pay() {
             if (userOrder == null) {
                 call.respond(HttpStatusCode.BadRequest, "Заказ ещё не готов!")
             }
+            if (userOrder != null) {
+                if (userOrder.orderState is PayedState){
+                    call.respond(HttpStatusCode.BadRequest, "Заказ уже оплачен")
+                    return@post
+                }
+            }
             var success = false
             try {
                 success = PaySystem.isPayed(user, result.cardNumber, userOrder!!)
@@ -33,7 +40,9 @@ fun Application.pay() {
             if (!success) {
                 call.respond(HttpStatusCode.BadRequest, "Введите корректный номер карты, пожалуйста.")
             }
-
+            if (userOrder != null) {
+                userOrder.orderState = PayedState(userOrder)
+            }
             call.respond(HttpStatusCode.OK, "Оплачен.")
         }
     }

@@ -41,7 +41,7 @@ class OrderBuilder {
     }
 
     fun getOrder(): Order? {
-        if (order.orderState is AfterCookingState) return order
+        if (order.orderState is AfterCookingState || order.orderState is PayedState) return order
         return null
     }
 

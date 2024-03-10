@@ -162,19 +162,6 @@ object DataBaseAdapter {
         return data
     }
 
-    fun getIncomePerDay(date: String): UInt{
-        var income : UInt = 0u
-        val selectUserRequest = """
-        select * from income
-        where date = '$date';
-        """.trimIndent()
-        val result = manager.executeQuery(selectUserRequest) ?: throw NullPointerException()
-        while (result.next()){
-            income += result.getInt("sum").toUInt()
-        }
-        return income
-    }
-
     fun getIncome(): UInt{
         var income : UInt = 0u
         val selectUserRequest = """
@@ -260,6 +247,22 @@ object DataBaseAdapter {
         WHERE name = '$name';
         """.trimIndent()
         manager.update(updateMealCostValue)
+    }
+
+    fun changeMealCookingTime(name: String, time: UInt){
+        val selectByMealNameRequest = """
+        select * from meals
+        where name = '$name';
+        """.trimIndent()
+        val result = manager.executeQuery(selectByMealNameRequest) ?: throw NullPointerException()
+        if (!result.next()){
+            throw NullPointerException()
+        }
+        val updateMealCookingTimeValue = """
+        UPDATE meals SET cookingTime = '$time'
+        WHERE name = '$name';
+        """.trimIndent()
+        manager.update(updateMealCookingTimeValue)
     }
 
     fun removeMealFromMenu(name: String){
